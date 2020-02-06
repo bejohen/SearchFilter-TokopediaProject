@@ -1,5 +1,5 @@
 //
-//  QueryModel.swift
+//  FilterModel.swift
 //  SearchFilter
 //
 //  Created by Johanes Steven on 06/02/20.
