@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5Ji-0Z-joA" customClass="CustomFooterView" customModule="SearchFilter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="22"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="TvR-od-Tnw">
+                    <rect key="frame" x="197" y="1" width="20" height="20"/>
+                </activityIndicatorView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="TvR-od-Tnw" firstAttribute="centerY" secondItem="5Ji-0Z-joA" secondAttribute="centerY" id="DPo-tG-gHA"/>
+                <constraint firstItem="TvR-od-Tnw" firstAttribute="centerX" secondItem="5Ji-0Z-joA" secondAttribute="centerX" id="N5U-sW-rDr"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="6MT-pd-6HT"/>
+            <connections>
+                <outlet property="refreshIndicator" destination="TvR-od-Tnw" id="Za8-qL-lgW"/>
+            </connections>
+            <point key="canvasLocation" x="117.39130434782609" y="159.375"/>
+        </collectionReusableView>
+    </objects>
+</document>
