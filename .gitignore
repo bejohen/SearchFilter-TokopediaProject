@@ -3,4 +3,4 @@ build
 Podfile.lock
 SearchFilter.xcworkspace
 SearchFilter.xcodeproj/xcuserdata
-!Pods/RangeSeekSlider/Sources/RangeSeekSlider.swift
+!/Pods/RangeSeekSlider/Sources/RangeSeekSlider.swift
