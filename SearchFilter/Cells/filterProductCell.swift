@@ -56,7 +56,7 @@ class FilterProductCell: UICollectionViewCell {
     addSubview(productPriceLabel)
       
     imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-    imageView.anchor(top: self.topAnchor, paddingTop: 7.5, width: self.frame.width-15, height: self.frame.width-15)
+    imageView.anchor(top: self.topAnchor, paddingTop: 7.5, width: self.frame.width-10, height: self.frame.width-10)
     
     productNameLabel.anchor(top: imageView.bottomAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingTop: self.frame.height/35, paddingLeft: 15, paddingRight: 15, width: self.frame.width-15, height: self.frame.height/6)
     

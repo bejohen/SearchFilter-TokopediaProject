@@ -7,4 +7,5 @@ target 'SearchFilter' do
 
   # Pods for SearchFilter
 pod 'RangeSeekSlider'
+pod 'MaterialComponents/Chips'
 end

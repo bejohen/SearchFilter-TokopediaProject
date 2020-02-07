@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,8 @@
 		0D92F89823EC0FB2004ECFC8 /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D92F89723EC0FB2004ECFC8 /* FilterModel.swift */; };
 		0D92F89C23EC1D18004ECFC8 /* PriceSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D92F89B23EC1D17004ECFC8 /* PriceSliderCell.swift */; };
 		0D92F89E23EC1F29004ECFC8 /* ShopTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D92F89D23EC1F29004ECFC8 /* ShopTypeCell.swift */; };
+		0D92F8A023EC3FD5004ECFC8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D92F89F23EC3FD5004ECFC8 /* Endpoint.swift */; };
+		0D92F8A223ECFC4C004ECFC8 /* ShoptypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D92F8A123ECFC4C004ECFC8 /* ShoptypeViewController.swift */; };
 		214B7A4FD227A5DB5306EB02 /* Pods_SearchFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CA2BB749F0219F6249E1D5 /* Pods_SearchFilter.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,8 @@
 		0D92F89723EC0FB2004ECFC8 /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
 		0D92F89B23EC1D17004ECFC8 /* PriceSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSliderCell.swift; sourceTree = "<group>"; };
 		0D92F89D23EC1F29004ECFC8 /* ShopTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTypeCell.swift; sourceTree = "<group>"; };
+		0D92F89F23EC3FD5004ECFC8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		0D92F8A123ECFC4C004ECFC8 /* ShoptypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoptypeViewController.swift; sourceTree = "<group>"; };
 		90CA2BB749F0219F6249E1D5 /* Pods_SearchFilter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchFilter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2FB6F40C892A8375F37F94 /* Pods-SearchFilter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchFilter.debug.xcconfig"; path = "Target Support Files/Pods-SearchFilter/Pods-SearchFilter.debug.xcconfig"; sourceTree = "<group>"; };
 		F12ED2E7C114594DDB46F60A /* Pods-SearchFilter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchFilter.release.xcconfig"; path = "Target Support Files/Pods-SearchFilter/Pods-SearchFilter.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 				0D92F85223E98A19004ECFC8 /* Assets.xcassets */,
 				0D92F85423E98A19004ECFC8 /* LaunchScreen.storyboard */,
 				0D92F85723E98A19004ECFC8 /* Info.plist */,
+				0D92F89F23EC3FD5004ECFC8 /* Endpoint.swift */,
 			);
 			path = SearchFilter;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				0D92F84D23E98A18004ECFC8 /* ViewController.swift */,
+				0D92F8A123ECFC4C004ECFC8 /* ShoptypeViewController.swift */,
 				0D92F89323EBA720004ECFC8 /* FilterViewController.swift */,
 			);
 			path = ViewController;
@@ -153,7 +159,6 @@
 				DE2FB6F40C892A8375F37F94 /* Pods-SearchFilter.debug.xcconfig */,
 				F12ED2E7C114594DDB46F60A /* Pods-SearchFilter.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -273,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D92F8A023EC3FD5004ECFC8 /* Endpoint.swift in Sources */,
 				0D92F89E23EC1F29004ECFC8 /* ShopTypeCell.swift in Sources */,
 				0D92F88A23EA4EFE004ECFC8 /* Model.swift in Sources */,
 				0D92F89823EC0FB2004ECFC8 /* FilterModel.swift in Sources */,
@@ -284,6 +290,7 @@
 				0D92F88223E9CB4F004ECFC8 /* filterProductCell.swift in Sources */,
 				0D92F84A23E98A18004ECFC8 /* AppDelegate.swift in Sources */,
 				0D92F88F23EB3531004ECFC8 /* CustomFooterView.swift in Sources */,
+				0D92F8A223ECFC4C004ECFC8 /* ShoptypeViewController.swift in Sources */,
 				0D92F88C23EAE6A5004ECFC8 /* ApiService.swift in Sources */,
 				0D92F84C23E98A18004ECFC8 /* SceneDelegate.swift in Sources */,
 			);

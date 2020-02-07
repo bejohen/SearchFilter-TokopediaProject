@@ -11,6 +11,9 @@ import Combine
 
 class ViewController: UIViewController {
   
+  public var filterModel: FilterModel?
+  public var resetModel = false
+  
   private var apiService = ApiService()
   private var cancellable: AnyCancellable?
   private var productFiltered: [ProductModel] = [] {
@@ -20,6 +23,8 @@ class ViewController: UIViewController {
     }
   }
   
+  let filterVC = FilterViewController()
+  
   let cellID = "filterProductCell"
   let footerViewReuseIdentifier = "RefreshFooterView"
   
@@ -27,7 +32,7 @@ class ViewController: UIViewController {
     let layout = UICollectionViewFlowLayout()
     let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
     layout.scrollDirection = .vertical
-    collection.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    collection.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     collection.translatesAutoresizingMaskIntoConstraints = false
     collection.isScrollEnabled = true
     return collection
@@ -41,14 +46,20 @@ class ViewController: UIViewController {
     let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
     button.backgroundColor = #colorLiteral(red: 0.2615385652, green: 0.707508862, blue: 0.2872550189, alpha: 1)
     button.setTitle("Filter", for: .normal)
-    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+    button.layer.cornerRadius = 10
+    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
     button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     return button
   }()
   
   @objc func buttonAction(sender: UIButton!) {
     
-    performSegue(withIdentifier: "toFilterVC", sender: self)
+    filterVC.query = filterModel!.q!
+    let navVC = UINavigationController(rootViewController: filterVC)
+    navVC.modalPresentationStyle = .fullScreen
+    present(navVC, animated: true, completion: nil)
+    
+//    performSegue(withIdentifier: "toFilterVC", sender: self)
 
     print("Button tapped")
   }
@@ -58,29 +69,31 @@ class ViewController: UIViewController {
     
     collectionView.delegate = self
     collectionView.dataSource = self
+    filterVC.delegate = self
 
     collectionView.register(FilterProductCell.self, forCellWithReuseIdentifier: cellID)
     
     collectionView.register(UINib(nibName: "CustomFooterView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerViewReuseIdentifier)
     
+    filterModel = FilterModel(q: "samsung")
     
     view.addSubview(collectionView)
     view.addSubview(filterButton)
     setupCollectionView()
     setupButtonView()
-    fetchProduct()
+    fetchProduct(start: 0)
   }
   
   func setupCollectionView() {
 
-    var paddingBottom = view.frame.height/12
+    var paddingBottom = view.frame.height/10
 
     if view.frame.height > 750 {
-      paddingBottom = view.frame.height/12.5
+      paddingBottom = view.frame.height/10.5
     } else if view.frame.height > 800 {
-      paddingBottom = view.frame.height/13
+      paddingBottom = view.frame.height/11
     } else if view.frame.height > 850 {
-      paddingBottom = view.frame.height/13.5
+      paddingBottom = view.frame.height/11.5
     }
     
     collectionView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: paddingBottom, paddingRight: 0, width: view.frame.width, height: view.frame.height)
@@ -88,27 +101,27 @@ class ViewController: UIViewController {
   
   func setupButtonView() {
     
-    filterButton.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingLeft: 5, paddingBottom: 5, paddingRight: 5, width: view.frame.width, height: view.frame.height/15)
+    var paddingBottom: CGFloat = 10
+    if view.frame.height > 750 {
+      paddingBottom = 14
+    } else if view.frame.height > 800 {
+      paddingBottom = 18
+    } else if view.frame.height > 850 {
+      paddingBottom = 20
+    }
+    filterButton.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingLeft: 12, paddingBottom: paddingBottom, paddingRight: 12, width: view.frame.width, height: view.frame.height/15)
   }
   
-  private func fetchProduct() {
+  private func fetchProduct(start: Int) {
     
-    self.cancellable = self.apiService.fetchProduct()
-      .sink(receiveCompletion: { _ in }, receiveValue: { (data) in
-        for dat in data {
-          self.productFiltered.append(dat)
-        }
-      })
-  }
-  
-  private func scrollProduct(start: Int) {
-    
-    self.cancellable = self.apiService.scrollProduct(start: start)
-      .sink(receiveCompletion: { _ in }, receiveValue: { (data) in
-        for dat in data {
-          self.productFiltered.append(dat)
-        }
-      })
+    if let filterModel = filterModel {
+      self.cancellable = self.apiService.scrollProduct(filterModel: filterModel, start: start)
+        .sink(receiveCompletion: { _ in }, receiveValue: { (data) in
+          for var dat in data {
+            self.productFiltered.append(dat)
+          }
+        })
+    }
   }
 }
 
@@ -132,7 +145,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     if view.frame.height > 750 {
       height = view.frame.height/2.8
-      
     } else if view.frame.height > 800 {
       height = view.frame.height/3.3
     } else if view.frame.height > 850 {
@@ -152,6 +164,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
 
   public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
       return 1
+  }
+  
+  public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    let product = productFiltered[indexPath.row]
+    print("impression - \(String(describing: product.id!)), \(String(describing: product.name!))")
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -201,7 +219,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     if pullRatio >= 1 {
       self.footerView?.animateFinal()
     }
-    print("pullRation:\(pullRatio)")
+//    print("pullRation:\(pullRatio)")
   }
   
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -221,11 +239,23 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer:Timer) in
           print("loaded : \(self.loadedProduct)")
-          self.scrollProduct(start: self.loadedProduct)
+          self.fetchProduct(start: self.loadedProduct)
           self.loadedProduct+=10
           self.isLoading = false
         })
       }
     }
+  }
+}
+
+extension ViewController: FilterViewControllerDelegate {
+  
+  func applyFilter(filterModel: FilterModel?, resetData: Bool) {
+    if resetData {
+      self.productFiltered.removeAll()
+      self.loadedProduct = 10
+    }
+    self.filterModel = filterModel
+    fetchProduct(start: 0)
   }
 }
