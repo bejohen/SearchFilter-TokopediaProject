@@ -6,6 +6,5 @@ target 'SearchFilter' do
   use_frameworks!
 
   # Pods for SearchFilter
-pod 'RangeSeekSlider'
 pod 'MaterialComponents/Chips'
 end

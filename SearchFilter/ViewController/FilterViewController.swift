@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RangeSeekSlider
 import MaterialComponents.MaterialChips
 
 protocol FilterViewControllerDelegate: class {
