@@ -1,6 +1,18 @@
-Pods/*
-build
 Podfile.lock
+Pods/Manifest.lock
+Pods/MaterialComponents
+Pods/MDFInternationalization
+Pods/MDFTextAccessibility
+Pods/Pods.xcodeproj/project.pbxproj
+Pods/Pods.xcodeproj/xcuserdata/johanessteven.xcuserdatad/xcschemes/MaterialComponents.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/johanessteven.xcuserdatad/xcschemes/MDFInternationalization.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/johanessteven.xcuserdatad/xcschemes/MDFTextAccessibility.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/johanessteven.xcuserdatad/xcschemes/Pods-SearchFilter.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/johanessteven.xcuserdatad/xcschemes/RangeSeekSlider.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/johanessteven.xcuserdatad/xcschemes/xcschememanagement.plist
+Pods/RangeSeekSlider/LICENSE
+Pods/RangeSeekSlider/README.md
+Pods/RangeSeekSlider/Sources/RangeSeekSliderDelegate.swift
+Pods/RangeSeekSlider/Sources/TapticEngine.swift
+Pods/Target Support Files
 SearchFilter.xcworkspace
-SearchFilter.xcodeproj/xcuserdata
-!/Pods/RangeSeekSlider/Sources/RangeSeekSlider.swift
